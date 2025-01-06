@@ -1,12 +1,13 @@
 <?php
 
 use Illuminate\Contracts\View\Factory;
-use Collective\Html\HtmlBuilder;
+use LaravelLux\Html\HtmlBuilder;
 use Illuminate\Http\Request;
 use Illuminate\Routing\RouteCollection;
 use Illuminate\Routing\UrlGenerator;
 use Mockery as m;
 
+#[\AllowDynamicProperties]
 class HtmlBuilderTest extends PHPUnit\Framework\TestCase
 {
 
@@ -127,7 +128,7 @@ class HtmlBuilderTest extends PHPUnit\Framework\TestCase
 
     public function testMailto()
     {
-        $htmlBuilder = m::mock('Collective\Html\HtmlBuilder[obfuscate,email]', [$this->urlGenerator, $this->viewFactory]);
+        $htmlBuilder = m::mock('LaravelLux\Html\HtmlBuilder[obfuscate,email]', [$this->urlGenerator, $this->viewFactory]);
         $htmlBuilder->shouldReceive('obfuscate', 'email')->andReturnUsing(function () {
             $args = func_get_args();
             return $args[0];
